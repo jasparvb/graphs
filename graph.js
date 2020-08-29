@@ -35,13 +35,38 @@ class Graph {
   }
 
   // this function accepts a vertex and removes it from the nodes property, it also updates any adjacency lists that include that vertex
-  removeVertex(vertex) {}
+  removeVertex(vertex) {
+    for(let node of this.nodes) {
+      if(node.adjacent.has(vertex)) {
+        node.adjacent.delete(vertex);
+      }
+    }
+    this.nodes.delete(vertex);
+  }
 
   // this function returns an array of Node values using DFS
-  depthFirstSearch(start) {}
+  depthFirstSearch(start) {
+    let data = [];
+    let visited = new Set();
+
+    function traverse(node) {
+      if(!node) return null;
+      visited.add(node);
+      data.push(node.value);
+      node.adjacent.forEach(n => {
+        if(!visited.has(n)) {
+          traverse(n)
+        }
+      })
+    }
+    traverse(start);
+    return data;
+  }
 
   // this function returns an array of Node values using BFS
-  breadthFirstSearch(start) {}
+  breadthFirstSearch(start) {
+
+  }
 }
 
 module.exports = {Graph, Node}
