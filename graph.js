@@ -73,7 +73,7 @@ class Graph {
 
     while(queue.length) {
       start = queue.shift();
-      result.push(start.value);
+      data.push(start.value);
 
       start.adjacent.forEach(n => {
         if(!visited.has(n)) {
